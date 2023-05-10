@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type CfpDataT = CollectionEntry<'cfp'>['data']
+
+interface Props {
+  cfpData: CfpDataT
+}
+
+const {
+  cfpData: { title, tags, conference_start, conference_end }
+} = Astro.props
+---
+
+<div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">{title}</h2>
+    <p>{conference_start} to {conference_end}</p>
+    <div class="card-actions justify-end">
+      {tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
+    </div>
+  </div>
+</div>
